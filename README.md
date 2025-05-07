@@ -18,7 +18,7 @@ This project is a basic API for managing contacts. You can add, view, update, an
 
 1. Clone this repository
 2. Install the required Python libraries
-3. Set up your MySQL database**
+3. Set up MySQL database
     - Create a database
     - Create a table
 4. Update the database settings in the project
