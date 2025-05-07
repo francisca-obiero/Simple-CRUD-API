@@ -1,25 +1,73 @@
-# Simple CRUD API with FastAPI and MySQL
+ # Simple Contact Book CRUD API with FastAPI and MySQL
 
-This project is a basic API for managing contacts. You can add, view, update, and delete contacts using this API. It uses FastAPI (Python) for the backend and MySQL for the database.
+## Project Overview
 
-## Details
+This project implements a simple Contact Book API using FastAPI (Python framework) connected to a MySQL database. It demonstrates the creation of a fully functional CRUD (Create, Read, Update, Delete) API that manages contacts and groups, including their many-to-many relationships.
 
-- Add a new contact
-- View all contacts or a single contact
-- Update a contact’s details
-- Delete a contact
+---
+## Assignment Objective
+Question 2: Create a Simple CRUD API Using MySQL + Programming
 
-## Tools Used
+- Combine MySQL skills with a programming language (Python)
+- Design a database schema with at least 2–3 tables
+- Build an API using FastAPI
+- Implement all CRUD operations (Create, Read, Update, Delete)
+- Connect the API to the MySQL database
 
-- Python (FastAPI)
-- MySQL
+## What Has Been Done
 
-## How to Run
+### 1. SQL Script (`contactBook` Database)
 
-1. Clone this repository
-2. Install the required Python libraries
-3. Set up MySQL database
-    - Create a database
-    - Create a table
-4. Update the database settings in the project
-5. Start the API
+- Created a database named `contactBook`.
+- Designed three tables:
+  - `contacts`: stores contact information (`id`, `name`, `email`, `phone`).
+  - `groupsTable`: stores groups (`id`, `name`).
+  - `contactGroups`: join table to represent many-to-many relationships between contacts and groups (`contactId`, `groupId`).
+- Established foreign key constraints with cascading deletes to maintain referential integrity.
+
+---
+
+### 2. Pydantic Models (`schemas.py`)
+
+- Defined data validation and serialization models using Pydantic:
+  - `ContactBase`, `ContactCreate`, and `Contact` for contacts.
+  - `GroupBase`, `GroupCreate`, and `Group` for groups.
+  - `ContactWithGroups` to represent a contact with associated groups (for potential nested responses).
+- Models ensure input data correctness and provide clear API schema definitions.
+
+---
+
+### 3. FastAPI Application (`main.py`)
+
+- Connected to the MySQL database using `mysql.connector`.
+- Implemented full CRUD endpoints for **contacts**:
+  - `GET /contacts`: List all contacts.
+  - `POST /contacts`: Create a new contact.
+  - `PUT /contacts/{contactId}`: Update an existing contact.
+  - `DELETE /contacts/{contactId}`: Delete a contact.
+- Implemented full CRUD endpoints for **groups**:
+  - `GET /groups`: List all groups.
+  - `POST /groups`: Create a new group.
+  - `PUT /groups/{groupId}`: Update an existing group.
+  - `DELETE /groups/{groupId}`: Delete a group.
+- Used Pydantic models for request validation and response serialization.
+- Included error handling for common cases like missing records or database errors.
+- Followed camelCase naming convention consistently in function names and path parameters.
+
+---
+
+## How to Run the Project
+
+1. Set up MySQL database:
+2. Install dependencies
+3. Run the FastAPI server:
+4. Access API documentation
+   
+
+## Project Structure
+
+├── main.py        # FastAPI app with CRUD endpoints
+├── schemas.py     # Pydantic models for data validation
+└── contactBook.sql  # SQL script to create database and tables
+
+
